@@ -1,0 +1,14 @@
+# we need to define permissions here. This ensures
+# that they are available to enable on the permissions administration pages.
+
+'create subuser':
+  title: Create Subuser
+  description: Allow a user (client / Organization Admin) to register another user
+
+'delete subuser':
+  title: Delete Subuser
+  description: Allow a user (client / Organization Admin) to register another user connected to them
+
+'administer subuser':
+  title: Administer Subuser
+  description: Allow a user (client / Organization Admin) to view users on their subscription

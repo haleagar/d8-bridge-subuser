@@ -1,0 +1,10 @@
+name: bridge subuser
+type: module
+description: 'Allow Organization Administrators to create and delete users connected to their subscription'
+package: bridgetodata
+dependencies:
+- multiple_registration
+- drupal:user
+- views
+- drupal:block
+core: '8.x'

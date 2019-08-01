@@ -1,0 +1,13 @@
+<?php
+
+function bridge_subuser_preprocess_user(&$variables) {
+
+  $current_path = \Drupal::service('path.current')->getPath();
+  $path_args = explode('/', $current_path);
+
+  $query = \Drupal::entityQuery('user');
+  $query->condition('status', 1);
+  $query->condition('field_organization_adminstrator', $path_args[2]);
+  $entity_ids = $query->execute();
+  $variables['subuser_count'] = count($entity_ids) + 1;
+}

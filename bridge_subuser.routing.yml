@@ -1,0 +1,55 @@
+
+## This should list users and have delete and add user links
+#bridge_subuser_manage:
+#  path: 'user/{admin_user_id}/subscription'
+#  defaults:
+#    _controller: '\Drupal\bridge_subuser\Controller\BridgeSubuserController::manage'
+#  requirements:
+#    _permission: 'administer subuser'
+
+# Here we do delete conformation and validate the target user is part of the admin user's subscription
+bridge_subuser_delete:
+  path: 'user/{admin_user_id}/subuser/{target_user_id}/delete'
+  defaults:
+    _controller: '\Drupal\bridge_subuser\Controller\BridgeSubuserController::delete'
+    _title: 'Delete User Conformation'
+  requirements:
+    _permission: 'delete subuser'
+
+# Here we do delete conformation and validate the target user is part of the admin user's subscription
+bridge_subuser_deleteconfirm:
+  path: 'user/{admin_user_id}/subuser/{target_user_id}/deleteconfirm'
+  defaults:
+    _controller: '\Drupal\bridge_subuser\Controller\BridgeSubuserController::deleteconfirm'
+  requirements:
+    _permission: 'delete subuser'
+
+
+# Here we do delete conformation and validate the target user is part of the admin user's subscription.
+bridge_subuser_subuseradd:
+  path: 'user/{admin_user_id}/subscriptions/add'
+  defaults:
+    _form:  '\Drupal\bridge_subuser\Form\SubuserAddForm'
+    _title: 'Add subscription user'
+  requirements:
+    _permission: 'create subuser'
+
+# These routes are created by Multiple registration pages but we override the permissions here to block public access.
+bridge_subuser.register_full:
+  path: '/user/register/full'
+  defaults:
+    _controller: '\Drupal\bridge_core\Controller\RegistrationController::general'
+    _title: 'Step 1: Sign-up'
+  requirements:
+    _permission: 'create subuser'
+
+# In this case to give access to a logged in user whom is usually blocked from this page.
+# This gives a user the ability to register another user, but is not full user create permission.
+bridge_subuser.register_fulluser:
+  path: '/user/register/user'
+  defaults:
+    _entity_form: 'user.register'
+    _title: 'Add User'
+  requirements:
+    _permission: 'create subuser'
+
